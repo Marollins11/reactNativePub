@@ -1,20 +1,78 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet, TextInput } from "react-native";
+// import {InputStandard} from 'react-native-input-outline'
 
-export default function App() {
+const App = () => {
+  const [email, setEmail] = useState("");
+  const [dob, setDob] = useState("");
+  const [breed, setBreed] = useState("");
+  const [toy, setToy] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: "center"}}>
+        <Finput
+          inputType="false"
+          secureTextEntry
+          placeholder="Email"
+          onChange={setEmail}
+        />
+        <Finput
+          inputType="true"
+          placeholder="Password"
+          onChange={setPassword}
+        />
+        <Finput inputType="false" placeholder="Dog Name" onChange={setName} />
+        <Finput
+          inputType="false"
+          placeholder="Date Of Birth"
+          onChange={setDob}
+        />
+        <Finput inputType="false" placeholder="Breed" onChange={setBreed} />
+        <Finput
+          inputType="false"
+          placeholder="Favorite Toy"
+          onChange={setToy}
+        />
+      </ScrollView>
+  );
+};
+
+const Finput = ({ placeholder, onChange, inputType }) => {
+  return (
+    <View style={styles.input}>
+      <TextInput
+        placeholder={placeholder}
+        onChangeText={onChange}
+        secureTextEntry={inputType}
+      />
     </View>
   );
-}
-
+};
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignContent: "center",
+    backgroundColor: "white",
+    fontSize: 18,
+    padding: 8,
+  },
+  input: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    width: "75%",
+    height: 50,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 150 / 2,
+    margin: 10,
+  },
+  text: {
+    alignItems: "center",
+    color: "black",
+    fontSize: 10,
   },
 });
+
+export default App;
