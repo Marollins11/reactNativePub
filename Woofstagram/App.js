@@ -65,7 +65,7 @@ const woofCardStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 10,
-    marginLeft: 10,
+    marginLeft: 15,
     alignItems: "center"
   },
   title: {
