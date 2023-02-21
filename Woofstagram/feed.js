@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  FlatList,
   Text,
   View,
 } from "react-native";
@@ -48,14 +47,14 @@ const styles = StyleSheet.create({
 
 // App-specific components
 
-const WoofCard = ({avatar, name}) => (
-  <ScrollView>
+const WoofCard = ({name, avatar}) => (
+  <ScrollView horizontal = {true} >
     <View style = {[woofCardStyles.cardStyle, {justifyContent: "space-evenly"}]}>
       <Avatar url= {avatar}/>
       <Title style = {woofCardStyles.title} >{name}</Title>
     </View>
-    </ScrollView>
-  )
+  </ScrollView>
+);
 
 const woofCardStyles = StyleSheet.create({
   cardStyle: {
@@ -103,16 +102,11 @@ const woofPostStyles = StyleSheet.create({
 
 // The screen rendering everything
 const HomeScreen = () => (
-  <View>
+  <ScrollView>
     <Heading>Trending Woofs</Heading>
-    <FlatList 
-      horizontal = {true}
-      data = {data} 
-      renderItem={({item}) => <WoofCard name={item.name} avatar = {item.avatar}/>}
-      keyExtractor={item => (item.name, item.avatar)}>
-      </FlatList>
-    <Title>Posts</Title>
-  </View>
+    <WoofCard id= "woof-1" name= "Rex" avatar= "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=648&q=80" caretaker= "Victor Grabarczyk" source= "https://unsplash.com/photos/x5oPmHmY3kQ"/>
+    <Title>Generic title</Title>
+  </ScrollView>
 );
 
 const App = () => (
@@ -124,7 +118,8 @@ const App = () => (
 export default App;
 
 // "Fake" API data to use in your app
-const data =[
+const data = {
+  woofs: [
     {
       id: "woof-1",
       name: "Rex",
@@ -165,8 +160,8 @@ const data =[
       caretaker: "Jamie Street",
       source: "https://unsplash.com/photos/uNNCs5kL70Q",
     },
-  ]
-  const posts = [
+  ],
+  posts: [
     {
       id: "post-1",
       image:
@@ -226,4 +221,5 @@ const data =[
       caretaker: "Jamie Street",
       source: "https://unsplash.com/photos/wcO2PWLuQ3U",
     },
-  ]
+  ],
+};
